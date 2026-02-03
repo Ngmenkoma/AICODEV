@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICODEV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+      <link rel="icon" href="aicodev.jpg" type="">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .caro-blue { background-color: #002147; }
+        .caro-orange { background-color: #f7501d; }
+        .text-caro-green { color: #008000; }
+        .gradient-overlay { background: linear-gradient(rgba(0,33,71,0.7), rgba(0,33,71,0.7)); }
+        .caro-green { background-color: #008000; }
+
+  /* Updated Team Section for Responsiveness */
+        .team-section {
+            width: 100%;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .team-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap; /* Allows wrapping on smaller laptop screens */
+        }
+
+        .profile-image {
+            flex: 0 0 250px;
+            margin: 0 auto;
+        }
+
+        .img-container {
+            border: 1px solid #ddd;
+            padding: 5px;
+            background: #fff;
+        }
+
+        .img-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .social-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .profile-content {
+            flex: 1;
+            min-width: 300px; /* Ensures text doesn't get too squeezed */
+        }
+
+        .name { color: #2e7d32; font-size: 2.5rem; font-weight: 600; margin-bottom: 5px; }
+        .job-title { color: #4caf50; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
+        .bio p { color: #444; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
+
+        /* Animations */
+        .slide-left { animation: slideFromLeft 5s ease-out forwards; }
+        @keyframes slideFromLeft {
+            0% { opacity: 0; transform: translateX(-100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-right { animation: slideFromRight 5s ease-out forwards; }
+        @keyframes slideFromRight {
+            0% { opacity: 0; transform: translateX(100px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 768px) {
+            .team-card { flex-direction: column; text-align: center; }
+            .bio p { text-align: center; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="caro-blue text-white py-2 px-6 hidden lg:flex justify-between items-center text-sm">
+        <div class="flex space-x-6">
+            <span><i class="fas fa-envelope text-caro-green mr-2"></i>aicodevghana@gmail.com</span>
+            <span><i class="fas fa-phone text-caro-green mr-2"></i> +233 (0) 24 000 0000</span>
+        </div>
+        <div class="flex space-x-4">
+            <a href="#"><i class="fab fa-facebook-f hover:text-aicodev-orange transition"></i></a>
+            <a href="#"><i class="fab fa-twitter hover:text-aicodev-orange transition"></i></a>
+            <a href="#"><i class="fab fa-instagram hover:text-aicodev-orange transition"></i></a>
+             <a href="#"><i class="fab fa-linkin hover:text-aicodev-orange transition"></i></a>
+        </div>
+    </div>
+
+   <nav class="caro-green shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-xl md:text-2xl font-extrabold tracking-tighter text-[#002147]">
+            AICODEV<span class="text-caro-orange text-3xl">.</span>
+        </div>
+        
+        <div class="hidden md:flex space-x-6 items-center font-semibold text-[#002147]">
+            <a href="#" class="text-caro-orange">Home</a>
+            <a href="#projects" class="hover:text-caro-orange transition">Projects</a>
+            <a href="#team" class="hover:text-caro-orange transition">Team</a>
+            <a href="#contact" class="hover:text-caro-orange transition">Contact</a>
+        </div>
+
+        <button class="md:hidden text-[#002147] text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+    <section class="relative h-[600px] flex items-center">
+        <div class="absolute inset-0 z-0">
+            <img src="Background for home.jpg" class="w-full h-full object-cover" alt="Hero Image">
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-white">
+            <h4 class="text-carprogress-orange font-bold tracking-widest uppercase mb-4 text-caro-orange">Building Resilient Communities</h4>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Empowering Communities<br>Through Innovation</h1>
+            <p class="text-xl max-w-2xl mb-8 text-gray-200">Alternative Innovations For Community Development (AICODEV-Ghana) is a registered NGO committed to improving lives through education, health, livelihoods, and community empowerment in Ghana’s rural communities.
+
+
+            <div class="flex flex-wrap gap-4">
+                <a href="#about" class="caro-orange px-8 py-4 rounded font-bold hover:scale-105 transition transform">Our Mission</a>
+                <a href="#projects" class="border-2 border-white px-8 py-4 rounded font-bold hover:bg-white hover:text-[#002147] transition">What We Do</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-12 shadow-inner">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center border-r border-gray-100 last:border-0">
+                <h3 class="text-4xl font-bold text-[#002147]">15</h3>
+                <p class="text-gray-500 font-medium">Rural Communities</p>
+            </div>
+            <div class="text-center border-r border-gray-100 last:border-0">
+                <h3 class="text-4xl font-bold text-caro-orange">2k+</h3>
+                <p class="text-gray-500 font-medium">Community Members Reached</p>
+            </div>
+             <div class="text-center border-r border-gray-100 last:border-0">
+                <h3 class="text-4xl font-bold text-[#002147]">10</h3>
+                <p class="text-gray-500 font-medium">Past Projects</p>
+            </div>
+            <div class="text-center border-r border-gray-100 last:border-0">
+                <h3 class="text-4xl font-bold text-[#002147]">2</h3>
+                <p class="text-gray-500 font-medium">Ongoing Projects</p>
+            </div>
+            
+        </div>
+    </section>
+
+   <!-- PROJECTS SECTION -->
+<section id="projects" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+
+    <!-- Section Title -->
+    <div class="text-center mb-20">
+      <h2 class="text-4xl font-extrabold text-[#002147] mb-4">
+        Our Projects
+      </h2>
+      <div class="h-1.5 w-24 caro-orange mx-auto"></div>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Explore some of our impactful initiatives aimed at empowering
+        rural communities across Ghana.
+      </p>
+    </div>
+
+    <!-- PROJECT 1 -->
+    <div class="mb-24 overflow-hidden">
+
+      <img src="a2.jpg"
+           alt="AICODEV"
+           class="float-none md:float-left md:w-1/2 w-full
+                  md:mr-8 mb-6 rounded-2xl shadow-xl object-cover"
+           data-aos="fade-right">
+
+      <div data-aos="fade-left">
+        <h3 class="text-3xl font-bold text-[#002147] mb-4">
+          
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eius facere velit recusandae illum,
+            dolor repellat inventore eveniet exercitationem quam molestias ut? Quod quo nisi iusto ipsum
+             reiciendis dignissimos inventore.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+          Unde, quia quod illo sequi inventore quisquam vitae optio sapiente, illum rerum, cupiditate recusandae. 
+          Repellat tempora impedit illo molestias corrupti numquam totam!
+        </p>
+
+        <a href="#" class="inline-block text-caro-orange font-semibold hover:underline">
+          Read More →
+        </a>
+      </div>
+
+      <div class="clear-both"></div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="mb-24 overflow-hidden">
+
+      <img src="a1.jpg"
+           alt="AICODEV"
+           class="float-none md:float-right md:w-1/2 w-full
+                  md:ml-8 mb-6 rounded-2xl shadow-xl object-cover"
+           data-aos="fade-left">
+
+      <div data-aos="fade-right">
+        <h3 class="text-3xl font-bold text-[#002147] mb-4">
+          AICODEV
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+         Autem nostrum temporibus perspiciatis nemo dolore, 
+         quos provident labore quisquam asperiores doloremque maiores possimus odio nihil omnis sequi numquam iste cumque eligendi.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita soluta sequi deleniti quod veritatis,
+          odio quo aut eaque voluptates magnam, eum perferendis distinctio ipsum minima! Perferendis eligendi at laborum maxime.
+        </p>
+
+        <a href="#" class="inline-block text-caro-orange font-semibold hover:underline">
+          Read More →
+        </a>
+      </div>
+
+      <div class="clear-both"></div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="mb-24 overflow-hidden">
+
+      <img src="a2.jpg"
+           alt="Rural Health"
+           class="float-none md:float-left md:w-1/2 w-full
+                  md:mr-8 mb-6 rounded-2xl shadow-xl object-cover"
+           data-aos="fade-right">
+
+      <div data-aos="fade-left">
+        <h3 class="text-3xl font-bold text-[#002147] mb-4">
+          Rural Health Outreach
+        </h3>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+          This project focuses on adolescent reproductive health, mental
+          health awareness, and access to basic healthcare services in
+          underserved rural communities.
+        </p>
+
+        <p class="text-gray-600 leading-relaxed mb-4">
+          Health education campaigns and partnerships with local clinics
+          help improve outcomes and reduce preventable illnesses.
+        </p>
+
+        <a href="#" class="inline-block text-caro-orange font-semibold hover:underline">
+          Read More →
+        </a>
+      </div>
+
+      <div class="clear-both"></div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- GALLERY SECTION -->
+<section id="gallery" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+
+    <!-- Section Title -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-extrabold text-[#002147] mb-4">Gallery</h2>
+      <div class="h-1.5 w-24 caro-orange mx-auto"></div>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Highlights from our community outreach, training programs, and field activities.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+      <!-- Image 1 -->
+      <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+        <img src="Participatation in a two day Civil Society Forum.jpg" class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-[#002147]/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p class="text-white font-semibold text-lg">Participatation in a two day Civil Society Forum</p>
+        </div>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+        <img src="Radio programme to educate people on malaria elimination.jpg" class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-[#002147]/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p class="text-white font-semibold text-lg">Radio programme to educate people on malaria elimination</p>
+        </div>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="relative group overflow-hidden rounded-2xl shadow-lg">
+        <img src="Training Community Helath for the Gavi Project in The Wa west district.jpg" class="w-full h-72 object-cover transform group-hover:scale-110 transition duration-500">
+        <div class="absolute inset-0 bg-[#002147]/70 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+          <p class="text-white font-semibold text-lg">Training Community Helath for the Gavi Project in The Wa west district</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</section>
+
+<!--Team Section-->
+<section id="team" class="py-20 bg-white overflow-hidden">
+  <div class="container mx-auto px-6">
+
+    <div class="text-center mb-16" data-aos="fade-up">
+      <h2 class="text-4xl font-extrabold text-[#002147] mb-4">
+        Meet Our Team
+      </h2>
+      <div class="h-1.5 w-24 caro-orange mx-auto"></div>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Dedicated professionals working tirelessly to drive sustainable development and innovation in our communities.
+      </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+      
+      <div class="profile-image slide-left w-64 flex-shrink-0">
+        <div class="img-container shadow-lg">
+          <img src="Cyracus.jpeg" alt="Mr. Cyracus" class="w-full h-auto">
+        </div>
+        <div class="social-links">
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="profile-content slide-right text-center md:text-left">
+        <h2 class="name text-3xl md:text-4xl">Mr. Cyracus</h2>
+        <p class="job-title text-xl">Executive Director</p>
+        
+        <div class="bio text-gray-600">
+          <p class="mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus! Dicta, quis voluptatum. Eaque, soluta?
+          </p>
+          <p>
+            Ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus!
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+      
+      <div class="profile-image slide-left w-64 flex-shrink-0">
+        <div class="img-container shadow-lg">
+          <img src="Cyracus.jpeg" alt="Mr. Cyracus" class="w-full h-auto">
+        </div>
+        <div class="social-links">
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-caro-orange transition"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="profile-content slide-right text-center md:text-left">
+        <h2 class="name text-3xl md:text-4xl">Mr. Cyracus</h2>
+        <p class="job-title text-xl">Executive Director</p>
+        
+        <div class="bio text-gray-600">
+          <p class="mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus! Dicta, quis voluptatum. Eaque, soluta?
+          </p>
+          <p>
+            Ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus!
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-100">
+  <div class="container mx-auto px-6">
+
+    <!-- Section Title -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-[#002147] mb-4">Contact Us</h2>
+      <div class="h-1.5 w-24 caro-orange mx-auto"></div>
+      <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+        Reach out to us via email, social media, or our contact form below.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+
+      <!-- Left: Map + Social Media -->
+      <div class="space-y-6">
+        <!-- Map -->
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.576210893805!2d-0.1870!3d5.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3AAICODEV!2sAICODEV%20Ghana!5e0!3m2!1sen!2sgh!4v000000"
+            class="w-full h-80 border-0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h3 class="text-xl font-bold text-[#002147] mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="#" target="_blank" class="text-[#002147] hover:text-caro-orange text-3xl transform hover:scale-125 transition duration-300">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/YourNumber" target="_blank" class="text-[#002147] hover:text-caro-orange text-3xl transform hover:scale-125 transition duration-300">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" target="_blank" class="text-[#002147] hover:text-caro-orange text-3xl transform hover:scale-125 transition duration-300">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="bg-white p-8 rounded-2xl shadow-xl relative">
+        <h3 class="text-xl font-bold text-[#002147] mb-6">Send Us a Message</h3>
+
+        <form id="contact-form" class="space-y-4">
+
+          <div class="relative">
+            <span class="absolute left-3 top-3 text-gray-400"><i class="fas fa-user"></i></span>
+            <input type="text" name="name" placeholder="Your Name" required
+              class="w-full p-3 pl-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-caro-orange">
+          </div>
+
+          <div class="relative">
+            <span class="absolute left-3 top-3 text-gray-400"><i class="fas fa-envelope"></i></span>
+            <input type="email" name="email" placeholder="Your Email" required
+              class="w-full p-3 pl-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-caro-orange">
+          </div>
+
+          <div class="relative">
+            <span class="absolute left-3 top-3 text-gray-400"><i class="fas fa-comment"></i></span>
+            <textarea name="message" placeholder="Your Message" required
+              class="w-full p-3 pl-10 border border-gray-300 rounded h-32 focus:outline-none focus:ring-2 focus:ring-caro-orange"></textarea>
+          </div>
+
+          <button type="submit"
+    class="w-full bg-orange-500 text-white font-bold p-4 rounded-lg
+           shadow-lg hover:bg-orange-600 hover:shadow-2xl
+           transform hover:scale-105 transition duration-300">
+    Send Message
+</button>
+
+        </form>
+
+        <!-- Toast -->
+        <div id="toast" class="hidden fixed bottom-6 right-6 px-6 py-4 rounded shadow-lg text-white font-semibold z-50 transition transform duration-500"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    
+<footer class="caro-blue text-white pt-20 pb-10">
+  <div class="container mx-auto px-6 grid md:grid-cols-4 gap-12">
+
+    <!-- About / Description -->
+    <div>
+      <h3 class="text-2xl font-bold mb-6">AICODEV</h3>
+      <p class="text-gray-400 leading-relaxed mb-6">
+        Building habits, encouraging community engagement, and ensuring sustainable development in rural Ghana.
+      </p>
+      <div class="flex space-x-4">
+        <a href="#" class="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center hover:bg-caro-orange transition">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center hover:bg-caro-orange transition">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="w-10 h-10 border border-gray-600 rounded-full flex items-center justify-center hover:bg-caro-orange transition">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4 class="font-bold text-lg mb-6 uppercase tracking-wider">Quick Links</h4>
+      <ul class="space-y-4 text-gray-400">
+        <li><a href="#" class="hover:text-caro-orange">Who We Are</a></li>
+        <li><a href="#" class="hover:text-caro-orange">Our Impact</a></li>
+        <li><a href="#" class="hover:text-caro-orange">Latest News</a></li>
+        <li><a href="#" class="hover:text-caro-orange">Volunteer</a></li>
+      </ul>
+    </div>
+
+    <!-- Sponsors (Replaces Subscribe Section) -->
+    <div class="md:col-span-2">
+      <h4 class="font-bold text-lg mb-6 uppercase tracking-wider text-gray-300">Our Sponsors & Partners</h4>
+      <div class="flex flex-wrap items-center justify-start gap-10">
+        <!-- Sponsor 1 -->
+        <img src="GHANET.jpg" alt="GHANET"
+             class="h-12 transform transition duration-300 hover:scale-110 hover:opacity-80 cursor-pointer">
+        <!-- Sponsor 2 -->
+        <img src="Global.jpg" alt="Global Fund"
+             class="h-12 transform transition duration-300 hover:scale-110 hover:opacity-80 cursor-pointer">
+        <!-- Sponsor 3 -->
+        <img src="Aids commission.jpg" alt="HIV/AIDS Commission"
+             class="h-12 transform transition duration-300 hover:scale-110 hover:opacity-80 cursor-pointer">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="container mx-auto px-6 mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+    &copy; AICODEV. All Rights Reserved.
+  </div>
+</footer>
+
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 900,
+    once: true,
+    easing: 'ease-out-cubic'
+  });
+</script>
+<!-- EmailJS Script -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your public key
+  emailjs.init("user_Yr8hTwm-Uw8t4tMJL"); // Replace with your EmailJS public key
+
+  const form = document.getElementById('contact-form');
+  const toast = document.getElementById('toast');
+
+  function showToast(message, success = true) {
+    toast.textContent = message;
+    toast.classList.remove('hidden', 'bg-green-600', 'bg-red-500', 'translate-y-20', 'opacity-0');
+    toast.classList.add(success ? 'bg-green-600' : 'bg-red-500');
+
+    toast.style.opacity = 1;
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+      toast.style.opacity = 0;
+      toast.style.transform = 'translateY(20px)';
+    }, 3000);
+  }
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_58c2wuv', 'template_izajwy1', this)
+      .then(() => {
+        showToast('Message sent successfully!', true);
+        form.reset();
+      }, (error) => {
+        console.error('EmailJS Error:', error);
+        showToast('Oops! Something went wrong.', false);
+      });
+  });
+</script>
+
+
+</body>
+</html>
