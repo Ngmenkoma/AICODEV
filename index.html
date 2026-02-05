@@ -1,162 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AICODEV</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AICODEV</title>
 
-      <link rel="icon" href="aicodev.jpg" type="">
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        .caro-blue { background-color: #002147; }
-        .caro-orange { background-color: #f7501d; }
-        .text-caro-green { color: #008000; }
-        .gradient-overlay { background: linear-gradient(rgba(0,33,71,0.7), rgba(0,33,71,0.7)); }
-        .caro-green { background-color: #008000; }
+  <!-- Fonts & Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+ <link rel="icon" href="aicodev.jpg" type="">
 
-  /* Updated Team Section for Responsiveness */
-        .team-section {
-            width: 100%;
-            padding: 80px 0;
-            overflow: hidden;
-        }
+  <style>
+    body { font-family: 'Inter', sans-serif; }
 
-        .team-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 40px;
-            flex-wrap: wrap; /* Allows wrapping on smaller laptop screens */
-        }
+    .caro-blue { background-color: #002147; }
+    .caro-orange { background-color: #f7501d; }
+    .caro-green { background-color: #008000; }
+    .text-caro-green { color: #008000; }
 
-        .profile-image {
-            flex: 0 0 250px;
-            margin: 0 auto;
-        }
+    .gradient-overlay {
+      background: linear-gradient(rgba(0,33,71,0.7), rgba(0,33,71,0.7));
+    }
 
-        .img-container {
-            border: 1px solid #ddd;
-            padding: 5px;
-            background: #fff;
-        }
+    /* Clean CSS for Team */
+    .img-container {
+      border: 1px solid #ddd;
+      padding: 6px;
+      background: #fff;
+    }
 
-        .img-container img {
-            width: 100%;
-            display: block;
-        }
+    .social-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
 
-        .social-links {
-            margin-top: 15px;
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .profile-content {
-            flex: 1;
-            min-width: 300px; /* Ensures text doesn't get too squeezed */
-        }
-
-        .name { color: #2e7d32; font-size: 2.5rem; font-weight: 600; margin-bottom: 5px; }
-        .job-title { color: #4caf50; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; }
-        .bio p { color: #444; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
-
-        /* Animations */
-        .slide-left { animation: slideFromLeft 5s ease-out forwards; }
-        @keyframes slideFromLeft {
-            0% { opacity: 0; transform: translateX(-100px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        .slide-right { animation: slideFromRight 5s ease-out forwards; }
-        @keyframes slideFromRight {
-            0% { opacity: 0; transform: translateX(100px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        @media (max-width: 768px) {
-            .team-card { flex-direction: column; text-align: center; }
-            .bio p { text-align: center; }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .name {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
 
-    <div class="caro-blue text-white py-2 px-6 hidden lg:flex justify-between items-center text-sm">
-        <div class="flex space-x-6">
-            <span><i class="fas fa-envelope text-caro-green mr-2"></i>aicodevghana@gmail.com</span>
-            <span><i class="fas fa-phone text-caro-green mr-2"></i> +233 (0) 24 000 0000</span>
-        </div>
-        <div class="flex space-x-4">
-            <a href="#"><i class="fab fa-facebook-f hover:text-aicodev-orange transition"></i></a>
-            <a href="#"><i class="fab fa-twitter hover:text-aicodev-orange transition"></i></a>
-            <a href="#"><i class="fab fa-instagram hover:text-aicodev-orange transition"></i></a>
-             <a href="#"><i class="fab fa-linkin hover:text-aicodev-orange transition"></i></a>
-        </div>
+<body class="bg-gray-50 overflow-x-hidden">
+
+<!-- TOP BAR -->
+<div class="caro-blue text-white py-2 px-4
+            flex flex-col gap-2
+            sm:flex-row sm:justify-between sm:items-center
+            text-xs sm:text-sm">
+
+  <div class="flex flex-col sm:flex-row sm:space-x-6 text-center sm:text-left">
+    <span><i class="fas fa-envelope text-caro-green mr-2"></i>aicodevghana@gmail.com</span>
+    <span><i class="fas fa-phone text-caro-green mr-2"></i>+233 (0) 24 000 0000</span>
+  </div>
+
+  <div class="flex justify-center sm:justify-end space-x-4">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="caro-green sticky top-0 z-50 shadow-lg">
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="text-xl md:text-2xl font-extrabold text-[#002147]">
+      AICODEV<span class="text-caro-orange text-3xl">.</span>
     </div>
 
-   <nav class="caro-green shadow-lg sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="text-xl md:text-2xl font-extrabold tracking-tighter text-[#002147]">
-            AICODEV<span class="text-caro-orange text-3xl">.</span>
-        </div>
-        
-        <div class="hidden md:flex space-x-6 items-center font-semibold text-[#002147]">
-            <a href="#" class="text-caro-orange">About us</a>
-            <a href="#projects" class="hover:text-caro-orange transition">Projects</a>
-            <a href="#team" class="hover:text-caro-orange transition">Team</a>
-            <a href="#gallery" class="hover:text-caro-orange transition">Gallery</a>
-            <a href="#contact" class="hover:text-caro-orange transition">Contact</a>
-        </div>
-
-        <button class="md:hidden text-[#002147] text-2xl">
-            <i class="fas fa-bars"></i>
-        </button>
+    <div class="hidden md:flex space-x-6 font-semibold text-[#002147]">
+      <a href="#" class="text-caro-orange">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
     </div>
+
+    <button id="menuBtn" class="md:hidden text-[#002147] text-2xl">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-[#008000] px-6 pb-6 space-y-4 font-semibold text-[#002147]">
+    <a href="#" class="block">About</a>
+    <a href="#projects" class="block">Projects</a>
+    <a href="#team" class="block">Team</a>
+    <a href="#gallery" class="block">Gallery</a>
+    <a href="#contact" class="block">Contact</a>
+  </div>
 </nav>
-    <section class="relative h-[600px] flex items-center">
-        <div class="absolute inset-0 z-0">
-            <img src="Background for home.jpg" class="w-full h-full object-cover" alt="Hero Image">
-            <div class="absolute inset-0 gradient-overlay"></div>
-        </div>
-        <div class="container mx-auto px-6 relative z-10 text-white">
-            <h4 class="text-carprogress-orange font-bold tracking-widest uppercase mb-4 text-caro-orange">Building Resilient Communities</h4>
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Empowering Communities<br>Through Innovation</h1>
-            <p class="text-xl max-w-2xl mb-8 text-gray-200">Alternative Innovations For Community Development (AICODEV-Ghana) is a registered NGO committed to improving lives through education, health, livelihoods, and community empowerment in Ghana’s rural communities.
 
-<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+<!-- HERO -->
+<section class="relative min-h-[80vh] sm:min-h-[600px] flex items-center">
+  <div class="absolute inset-0">
+    <img src="Background for home.jpg" class="w-full h-full object-cover">
+    <div class="absolute inset-0 gradient-overlay"></div>
+  </div>
 
-  <a href="#mission"
-     class="caro-orange text-white
-            px-6 py-3 text-sm
-            sm:px-8 sm:py-4 sm:text-base
-            rounded-md font-bold
-            text-center
-            hover:scale-105 transition transform">
-    Our Mission
-  </a>
+  <div class="container mx-auto px-6 relative text-white">
+    <h4 class="text-caro-orange font-bold tracking-widest uppercase mb-4">
+      Building Resilient Communities
+    </h4>
 
-  <a href="#vision"
-     class="border-2 border-white text-white
-            px-6 py-3 text-sm
-            sm:px-8 sm:py-4 sm:text-base
-            rounded-md font-bold
-            text-center
-            hover:bg-white hover:text-[#002147] transition">
-    Our Vision
-  </a>
+    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6">
+      Empowering Communities<br>Through Innovation
+    </h1>
 
-</div>
+    <p class="text-base sm:text-xl max-w-2xl mb-8 text-gray-200">
+      Alternative Innovations For Community Development (AICODEV-Ghana) is a registered NGO
+      committed to improving lives through education, health, livelihoods, and community empowerment.
+    </p>
 
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="#mission" class="caro-orange text-white px-6 py-3 rounded-md font-bold text-center hover:scale-105 transition">
+        Our Mission
+      </a>
+      <a href="#vision" class="border-2 border-white px-6 py-3 rounded-md font-bold text-center hover:bg-white hover:text-[#002147] transition">
+        Our Vision
+      </a>
+    </div>
+  </div>
+</section>
 
-</div>
-
-        </div>
-    </section>
 
     <section class="bg-white py-12 shadow-inner">
         <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -179,6 +153,7 @@
             
         </div>
     </section>
+
 
 
     <!-- MISSION, VISION & THEMATIC AREAS -->
@@ -738,6 +713,6 @@
 </script>
 
 
+
 </body>
 </html>
-
