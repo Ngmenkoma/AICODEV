@@ -1,18 +1,1141 @@
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Creates two equal columns */
-  gap: 15px; /* Adds space between images */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+    <link rel="icon" type="image/png" href="Logo.jpg">
+
+    <title>AICODEV</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #27ae60;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            flex: 1;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown-arrow {
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu li a {
+            padding: 12px 20px;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu li a:hover {
+            background: #f9f9f9;
+        }
+        
+        nav ul li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        nav ul li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+            flex: 1;
+            text-align: right;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('P1.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        
+        
+        /* Programs Section */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+        
+        .program-content {
+            padding: 20px;
+        }
+        
+        .program-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+       
+        
+        
+        /* Team Section */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .team-member h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .team-member p {
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            margin-bottom: 15px;
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                transition: all 0.3s ease;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                justify-content: flex-start;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                margin-top: 10px;
+                margin-left: 20px;
+                display: none;
+            }
+            
+            .dropdown-menu.active {
+                display: block;
+            }
+            
+            .dropdown-arrow {
+                margin-left: auto;
+            }
+            
+            nav ul li:hover .dropdown-menu {
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        .mission-section {
+  padding: 80px 20px;
+  background: #ffffff;
 }
 
-.gallery img {
+.mission-section h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #0b5ed7;
+}
+
+.mission-section p {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 700px;
+}
+/* Full-page Mission & Vision Section */
+.about-section.fullpage {
+  position: relative;
+  min-height: 100vh; /* full screen */
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center;
+  background: url('your-background.jpg') no-repeat center center/cover;
+  color: #fff; /* text color */
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+  padding: 40px 20px;
+}
+
+/* Optional overlay for better text readability */
+.about-section.fullpage .overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 33, 71, 0.6); /* semi-transparent overlay */
+  z-index: 1;
+}
+
+/* Container above overlay */
+.fullpage-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
   width: 100%;
-  height: auto; /* Maintains aspect ratio */
-  display: block;
 }
 
-/* Optional: Mobile adjustment (1 column on small screens) */
-@media (max-width: 600px) {
-  .gallery {
-    grid-template-columns: 1fr;
+/* Header */
+.section-header h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+  color: #f0f0f0;
+}
+
+/* Mission & Vision Grid */
+.mission-vision-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .mission-vision-grid {
+    flex-direction: row;
+    gap: 40px;
   }
 }
+
+/* Boxes styling */
+.mission-box, .vision-box {
+  background-color: rgba(255, 255, 255, 0.1); /* semi-transparent box */
+  border-left: 5px solid #f7501d; /* mission left border color */
+  border-radius: 10px;
+  padding: 30px;
+  flex: 1;
+  -webkit-backdrop-filter: blur(5px); /* Safari 9+, Safari on iOS 9+ */
+  backdrop-filter: blur(5px); /* nice frosted effect */
+  transition: transform 0.6s ease;
+}
+
+.vision-box {
+  border-left-color: #008000; /* green for vision */
+}
+
+.mission-box:hover, .vision-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Text inside boxes */
+.mission-box h3, .vision-box h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.mission-box p, .vision-box p {
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* Section Divider (orange line under header) */
+.section-divider {
+  width: 100px;
+  height: 3px;
+  background-color: #f7501d;
+  margin: 20px auto;
+}
+
+/* GALLERY SECTION */
+    .gallery-section {
+      padding: 80px 0;
+      background-color: var(--light-gray);
+    }
+
+    .gallery-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    @media (min-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      height: 300px;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover .gallery-img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,33,71,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay p {
+      color: var(--white);
+      font-weight: 600;
+      padding: 20px;
+      text-align: center;
+    }
+
+
+
+    
+
+    /* Container for the whole top bar */
+.nav-top {
+    display: flex;
+    justify-content: space-between; /* Pushes contact left, social right */
+    align-items: center;
+    padding: 1px 2px;
+    background-color: #027df8; /* Dark background */
+    color: white;
+    font-size: 14px;
+}
+
+/* Align contact items (phone + email) */
+.contact-info {
+    display: flex;
+    gap: 15px; /* Spacing between phone and email */
+}
+
+/* Align social icons */
+.social-links {
+    display: flex;
+    gap: 10px; /* Spacing between icons */
+}
+
+/* Styling for all links inside .nav-top */
+.nav-top a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s;
+}
+
+.nav-top a:hover {
+    color: #f0a500; /* Color change on hover */
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 600px) {
+    .nav-top {
+        flex-direction: column; /* Stack vertically on small screens */
+        gap: 5px;
+    }
+}
+
+.team-social {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.team-social a {
+  color: #000000;        /* change if navbar is light */
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.team-social a:hover {
+  color: #22c55e;        /* hover green */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+
+         <div class="nav-top">
+        <!-- Contact Information (Left Side) -->
+        <div class="contact-info">
+            <a href="tel:+1234567890">📞 (123) 456-7890</a>
+            <a href="mailto:info@example.com">✉️ info@example.com</a>
+            <img src="Logo.jpg" alt="AICODEV Logo" style="height: 30px; margin-left: 15px;">
+        </div>
+        
+        <!-- Social Media Handles (Right Side) -->
+       <div class="top-right">
+  <div class="team-social">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+    </div>
+    
+    <!-- Optional Main Nav Below -->
+    <nav class="main-nav">
+        <!-- Main Menu Items -->
+    </nav>
+        <div class="container header-container">
+            <a href="#" class="logo">AICODEV<span></span></a>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li>
+                        <a href="#about">About </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#mission">Our Mission</a></li>
+                        
+                            <li><a href="#vision">Our Vision</a></li>
+                            <li><a href="#Thermatic Areas">Thermatic Areas</a></li>
+                        </ul>
+                    </li>
+                
+                     <li><a href="#projects">Projects</a></li>       
+                    <li><a href="#gallery">Gallery</a>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+        
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Alternative Innovation for Community Development</h1>
+            <p>We are dedicated to creating sustainable change through education, healthcare, and community development initiatives.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn">Our Projects</a>
+                <a href="#volunteer" class="btn btn-secondary">Get Involved</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    
+
+    <!-- Impact Section -->
+    <section class="impact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Numbers that speak about our dedication and commitment</p>
+            </div><!-- MISSION & VISION FULL-PAGE -->
+<section class="about-section fullpage">
+  <div class="overlay"></div> <!-- optional dark overlay for readability -->
+  
+  <div class="container fullpage-container">
+    <div class="section-header text-center">
+      <h2>Who We Are</h2>
+      <div class="section-divider"></div>
+      <p>
+        Our mission, vision, and thematic focus areas guide our commitment
+        to sustainable and inclusive community development in Ghana.
+      </p>
+    </div>
+    
+    <div class="mission-vision-grid">
+      <!-- Mission Box -->
+      <div class="mission-box" id="mission" data-aos="fade-right">
+        <h3>Our Mission</h3>
+        <p>
+          AICODEV Ghana works to change lives and build communities by ensuring
+          equal access to resources, social services, and social justice for all,
+          especially in underserved and rural communities.
+        </p>
+      </div>
+      
+      <!-- Vision Box -->
+      <div class="vision-box" id="vision" data-aos="fade-left">
+        <h3>Our Vision</h3>
+        <p>
+          A world where everyone enjoys equal rights and equal access
+          to essential services, opportunities, and a dignified quality of life.
+        </p>
+
+        <!--Thermatic Areas-->
+
+    </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>PROJECTS</h2>
+                <p>We run various projects to support communities in need</p>
+            </div>
+            <div class="programs-container">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="Social Behaviour Change Communication to prevent Malaria in pregnancy through increasing IPTp uptake..jpg" alt="Education Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Social Behaviour Change Communication to prevent Malaria in
+                             pregnancy through increasing IPTp uptake.</h3>
+                    
+                        <a href="#" class="btn">Learn More</a>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="Healthy Mothers, Smiling Babies Campaign Project.jpg" alt="Healthcare Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Healthy Mothers, Smiling Babies Campaign Project</h3>
+    
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="Increasing Covid-19 Vaccine uptake in Ghana.jpg" alt="Clean Water Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Increasing Covid-19 Vaccine uptake in Ghana</h3>
+                        <p></p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="Increasing Immunization coverage in Children less than five years through community advocacy and Mobilization..jpg" alt="Economic Empowerment">
+                    </div>
+                    <div class="program-content">
+                        <h3>Increasing Immunization coverage in Children less than five years through community advocacy and Mobilization.</h3>
+                        <p></p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 align="center">Gallery</h2>
+      <div class="section-divider"></div>
+      <p style="color: black ;" align="center">
+        Highlights from our community outreach, training programs, and field activities.
+      </p>
+    </div>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="Participatation in a two day Civil Society Forum.jpg" alt="Gallery 1" class="gallery-img">
+        <div class="gallery-overlay">
+          <p>Participatation in a two day Civil Society Forum</p>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="Radio programme to educate people on malaria elimination.jpg" alt="Gallery 2" class="gallery-img">
+        <div class="gallery-overlay">
+          <p>Radio programme to educate people on malaria elimination</p>
+        </div>
+      </div>
+      
+      <div class="gallery-item">
+        <img src="Training Community Helath for the Gavi Project in The Wa west district.jpg" alt="Gallery 3" class="gallery-img">
+        <div class="gallery-overlay">
+          <p>Training Community Helath for the Gavi Project in The Wa west district</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Team Section -->
+    <section id="team" class="team-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 align="center">Meet Our Team</h2>
+      <div class="section-divider"></div>
+      <p style ="color: black;" align="center">
+        Dedicated professionals working tirelessly to drive sustainable development and innovation in our communities.
+      </p>
+    </div>
+    
+    <div class="team-member">
+      <div class="team-image-container">
+        <img src="Cyracus.jpeg" alt="Mr. Cyracus" class="team-image">
+        <div class="team-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="team-content">
+        <h3 class="team-name">Mr. Cyracus</h3>
+        <p class="team-title">Executive Director</p>
+        <div class="team-bio">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus! Dicta, quis voluptatum. Eaque, soluta?
+          </p>
+          <p>
+            Ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
+            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
+            voluptatibus!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+   
+   
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AICODEV</h3>
+                    <p>Making a difference in communities worldwide through sustainable development initiatives.</p>
+                    
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#team">Our Team</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>1234 Charity Lane, City, Country</p>
+                    <p>Email: info@aicodev.org</p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to get updates on our programs and activities.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email Address" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 AICODEV. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Mobile dropdown toggle
+        const dropdownArrows = document.querySelectorAll('.dropdown-arrow');
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = arrow.parentElement.nextElementSibling;
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Donation Amount Selection
+        const donateOptions = document.querySelectorAll('.donate-option');
+        donateOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                donateOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                document.querySelector('.donate input[type="text"]').value = '$' + option.getAttribute('data-amount');
+            });
+        });
+        
+        // Animated Counter for Stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+        
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = Math.ceil(target / speed);
+                
+                if (count < target) {
+                    counter.innerText = Math.min(count + increment, target);
+                    setTimeout(animateCounters, 1);
+                }
+            });
+        };
+        
+        // Initialize counters when they come into view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-box').forEach(box => {
+            observer.observe(box);
+        });
+        
+        // Form Submission
+        const volunteerForm = document.getElementById('volunteerForm');
+        volunteerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest in volunteering! We will contact you soon.');
+            volunteerForm.reset();
+        });
+    </script>
+</body>
+</html>
