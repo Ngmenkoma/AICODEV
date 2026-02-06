@@ -1,1441 +1,948 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AICODEV</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="icon" href="aicodev.jpg" type="">
-
-  <style>
-    /* Reset and Base Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #140101;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    /* Color Variables */
-    :root {
-      --blue: #002147;
-      --orange: #f7501d;
-      --green: #008000;
-      --light-gray: #f8f9fa;
-      --gray: #6c757d;
-      --white: #ffffff;
-    }
-
-    /* Utility Classes */
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .text-left {
-      text-align: left;
-    }
-
-    .text-right {
-      text-align: right;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .flex-col {
-      flex-direction: column;
-    }
-
-    .items-center {
-      align-items: center;
-    }
-
-    .justify-between {
-      justify-content: space-between;
-    }
-
-    .justify-center {
-      justify-content: center;
-    }
-
-    .grid {
-      display: grid;
-    }
-
-    .relative {
-      position: relative;
-    }
-
-    .absolute {
-      position: absolute;
-    }
-
-    .inset-0 {
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-
-    /* Color Classes */
-    .caro-blue {
-      background-color: var(--blue);
-    }
-    
-    .caro-orange {
-      background-color: var(--orange);
-    }
-    
-    .caro-green {
-      background-color: var(--green);
-    }
-    
-    .text-caro-green {
-      color: var(--green);
-    }
-    
-    .text-caro-orange {
-      color: var(--orange);
-    }
-
-    /* Typography */
-    h1, h2, h3, h4 {
-      font-weight: 800;
-      color: var(--blue);
-      line-height: 1.2;
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    h4 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      margin-bottom: 1rem;
-      color: var(--gray);
-    }
-
-    /* Button Styles */
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      border-radius: 5px;
-      font-weight: bold;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-orange {
-      background-color: var(--orange);
-      color: var(--white);
-    }
-
-    .btn-orange:hover {
-      background-color: #e6491b;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      border: 2px solid var(--white);
-      color: var(--white);
-      background: transparent;
-    }
-
-    .btn-outline:hover {
-      background-color: var(--white);
-      color: var(--blue);
-    }
-
-    /* TOP BAR */
-    .top-bar {
-      background-color: var(--blue);
-      color: var(--white);
-      padding: 10px 20px;
-      font-size: 0.9rem;
-    }
-
-    .top-bar .container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (min-width: 768px) {
-      .top-bar .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (min-width: 768px) {
-      .contact-info {
-        flex-direction: row;
-        gap: 30px;
-      }
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-    }
-
-    .social-icons a {
-      color: var(--white);
-      transition: color 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      color: var(--green);
-    }
-
-    /* NAVBAR */
-    .navbar {
-      background-color: var(--green);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--blue);
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--orange);
-    }
-
-    .nav-links {
-      display: none;
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .nav-links {
-        display: flex;
-      }
-    }
-
-    .nav-links a {
-      color: var(--blue);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--white);
-    }
-
-    .menu-btn {
-      background: none;
-      border: none;
-      color: var(--blue);
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      .menu-btn {
-        display: none;
-      }
-    }
-
-    .mobile-menu {
-      background-color: var(--blue);
-      padding: 20px;
-      display: none;
-    }
-
-    .mobile-menu.show {
-      display: block;
-    }
-
-    .mobile-menu a {
-      display: block;
-      color: var(--blue);
-      text-decoration: none;
-      padding: 10px 0;
-      font-weight: 600;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      min-height: 80vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.7));
-    }
-
-    .hero-content {
-      position: relative;
-      color: var(--white);
-      padding: 40px 20px;
-    }
-
-    .hero h4 {
-      color: var(--orange);
-      font-size: 0.9rem;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .hero-buttons {
-        flex-direction: row;
-      }
-    }
-
-    /* STATS SECTION */
-    .stats {
-      background-color: var(--white);
-      padding: 50px 0;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 20px;
-      border-right: 1px solid #eee;
-    }
-
-    .stat-item:last-child {
-      border-right: none;
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-    }
-
-    /* MISSION & VISION SECTION */
-
-
-    
-    .about-section {
-      padding: 80px 0;
-      background-color: var(--light-gray);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .section-divider {
-      width: 100px;
-      height: 100px;
-      background-color: var(--orange);
-      margin: 20px auto;
-    }
-
-    .mission-vision-grid {
-      display: grid;
-      gap: 40px;
-      margin-bottom: 80px;
-    }
-
-    @media (min-width: 768px) {
-      .mission-vision-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-      }
-    }
-
-    .mission-box,
-    .vision-box {
-      background-color: var(--white);
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .mission-box {
-      border-left: 8px solid var(--orange);
-    }
-
-    .vision-box {
-      border-left: 8px solid var(--green);
-    }
-
-    /* THEMATIC AREAS */
-    .thematic-areas-grid {
-      display: grid;
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .thematic-areas-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .thematic-areas-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .thematic-item {
-      background-color: var(--white);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .thematic-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-    }
-
-    .thematic-icon {
-      font-size: 3rem;
-      color: var(--orange);
-      margin-bottom: 20px;
-    }
-
-    /* PROJECTS SECTION */
-    .projects-section {
-      padding: 80px 0;
-      background-color: var(--white);
-    }
-
-    .project-item {
-      margin-bottom: 80px;
-      overflow: hidden;
-    }
-
-    @media (min-width: 768px) {
-      .project-item {
-        display: flex;
-        align-items: center;
-        gap: 40px;
-      }
-      
-      .project-item.reverse {
-        flex-direction: row-reverse;
-      }
-    }
-
-    .project-image {
-      width: 100%;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
-    @media (min-width: 768px) {
-      .project-image {
-        width: 50%;
-        margin-bottom: 0;
-      }
-    }
-
-    .project-content {
-      flex: 1;
-    }
-
-    .read-more {
-      color: var(--orange);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .read-more:hover {
-      text-decoration: underline;
-    }
-
-    /* GALLERY SECTION */
-    .gallery-section {
-      padding: 80px 0;
-      background-color: var(--light-gray);
-    }
-
-    .gallery-grid {
-      display: grid;
-      gap: 30px;
-    }
-
-    @media (min-width: 768px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .gallery-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      height: 300px;
-    }
-
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover .gallery-img {
-      transform: scale(1.1);
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0,33,71,0.7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-
-    .gallery-overlay p {
-      color: var(--white);
-      font-weight: 600;
-      padding: 20px;
-      text-align: center;
-    }
-
-    /* TEAM SECTION */
-    .team-section {
-      padding: 80px 0;
-      background-color: var(--white);
-    }
-
-    .team-member {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    @media (min-width: 768px) {
-      .team-member {
-        flex-direction: row;
-        align-items: flex-start;
-      }
-    }
-
-    .team-image-container {
-      width: 250px;
-      border: 1px solid #ddd;
-      padding: 10px;
-      background-color: var(--white);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-
-    .team-image {
-      width: 100%;
-      height: auto;
-    }
-
-    .team-social {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 15px;
-    }
-
-    .team-social a {
-      color: var(--blue);
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
-    }
-
-    .team-social a:hover {
-      color: var(--orange);
-    }
-
-    .team-content {
-      text-align: center;
-    }
-
-    @media (min-width: 768px) {
-      .team-content {
-        text-align: left;
-      }
-    }
-
-    .team-name {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .team-title {
-      font-size: 1.3rem;
-      color: var(--gray);
-      margin-bottom: 20px;
-    }
-
-    /* CONTACT SECTION */
-    .contact-section {
-      padding: 80px 0;
-      background-color: var(--light-gray);
-    }
-
-    .contact-grid {
-      display: grid;
-      gap: 40px;
-    }
-
-    @media (min-width: 768px) {
-      .contact-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .contact-map {
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .contact-map iframe {
-      width: 100%;
-      height: 300px;
-      border: none;
-    }
-
-    .contact-social {
-      margin-top: 30px;
-    }
-
-    .contact-social h3 {
-      margin-bottom: 15px;
-    }
-
-    .social-icons-large {
-      display: flex;
-      gap: 20px;
-    }
-
-    .social-icons-large a {
-      color: var(--blue);
-      font-size: 2rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-icons-large a:hover {
-      color: var(--orange);
-      transform: scale(1.2);
-    }
-
-    .contact-form-container {
-      background-color: var(--white);
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .form-group {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .form-icon {
-      position: absolute;
-      left: 15px;
-      top: 15px;
-      color: var(--gray);
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      padding: 15px 15px 15px 45px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-    }
-
-    .form-textarea {
-      height: 150px;
-      resize: vertical;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: var(--orange);
-    }
-
-    .form-submit {
-      width: 100%;
-      padding: 15px;
-      background-color: var(--orange);
-      color: var(--white);
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .form-submit:hover {
-      background-color: #e6491b;
-      box-shadow: 0 5px 15px rgba(247, 80, 29, 0.3);
-    }
-
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 15px 30px;
-      border-radius: 5px;
-      color: var(--white);
-      font-weight: 600;
-      z-index: 1000;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .toast.success {
-      background-color: #28a745;
-    }
-
-    .toast.error {
-      background-color: #dc3545;
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: var(--blue);
-      color: var(--white);
-      padding: 80px 0 40px;
-    }
-
-    .footer-grid {
-      display: grid;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    @media (min-width: 768px) {
-      .footer-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .footer-about h3 {
-      color: var(--white);
-      margin-bottom: 20px;
-    }
-
-    .footer-about p {
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 30px;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 15px;
-    }
-
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .footer-social a:hover {
-      background-color: var(--orange);
-      border-color: var(--orange);
-    }
-
-    .footer-links h4 {
-      color: var(--white);
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 25px;
-    }
-
-    .footer-links ul {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 15px;
-    }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--orange);
-    }
-
-    .footer-partners {
-      grid-column: span 2;
-    }
-
-    .footer-partners h4 {
-      color: rgba(255,255,255,0.8);
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 25px;
-    }
-
-    .partners-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .partner-logo {
-      height: 50px;
-      transition: all 0.3s ease;
-    }
-
-    .partner-logo:hover {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-
-    .footer-bottom {
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
-      }
-      
-      h2 {
-        font-size: 2rem;
-      }
-      
-      h3 {
-        font-size: 1.5rem;
-      }
-      
-      .team-name {
-        font-size: 2rem;
-      }
-      
-      .contact-form-container {
-        padding: 30px 20px;
-      }
-      
-      .footer-partners {
-        grid-column: span 1;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .stat-item {
-        border-right: none;
-        border-bottom: 1px solid #eee;
-      }
-      
-      .stat-item:last-child {
-        border-bottom: none;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Logo.jpg">
+    <title>AICODEV</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --accent: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #27ae60;
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: #c0392b;
+        }
+        
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            flex: 1;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav {
+            flex: 2;
+            display: flex;
+            justify-content: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Dropdown Styles */
+        .dropdown-arrow {
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .dropdown-menu li {
+            margin: 0;
+            width: 100%;
+        }
+        
+        .dropdown-menu li a {
+            padding: 12px 20px;
+            display: block;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dropdown-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        .dropdown-menu li a:hover {
+            background: #f9f9f9;
+        }
+        
+        nav ul li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        nav ul li:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dark);
+            flex: 1;
+            text-align: right;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('P1.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Impact Section */
+        .impact {
+            background-color: var(--light);
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        /* Programs Section */
+        .programs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .program-card:hover .program-image img {
+            transform: scale(1.1);
+        }
+        
+        .program-content {
+            padding: 20px;
+        }
+        
+        .program-content h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+       
+        /* Volunteer Section */
+        .volunteer-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Team Section */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        
+        .team-member h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .team-member p {
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            margin-bottom: 15px;
+            display: block;
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                transition: all 0.3s ease;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+                justify-content: flex-start;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 30px;
+                width: 100%;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                margin-top: 10px;
+                margin-left: 20px;
+                display: none;
+            }
+            
+            .dropdown-menu.active {
+                display: block;
+            }
+            
+            .dropdown-arrow {
+                margin-left: auto;
+            }
+            
+            nav ul li:hover .dropdown-menu {
+                transform: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<!-- TOP BAR -->
-<div class="top-bar">
-  <div class="container">
-    <div class="contact-info">
-      <span><i class="fas fa-envelope text-caro-green"></i> aicodevghana@gmail.com</span>
-      <span><i class="fas fa-phone text-caro-green"></i> +233 (0) 24 000 0000</span>
-    </div>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-  </div>
-</div>
-
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="container">
-    <a href="#" class="logo">AICODEV<span>.</span></a>
-    
-    <div class="nav-links">
-      <a href="#" class="active">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#team">Team</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-    </div>
-    
-    <button class="menu-btn" id="menuBtn">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
-  
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#" class="active">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#team">Team</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <img src="Background for home.jpg" alt="Hero Background" class="hero-bg">
-  <div class="hero-overlay"></div>
-  
-  <div class="container hero-content">
-    <h4>Building Resilient Communities</h4>
-    <h1>Empowering Communities<br>Through Innovation</h1>
-    <p>
-      Alternative Innovations For Community Development (AICODEV-Ghana) is a registered NGO
-      committed to improving lives through education, health, livelihoods, and community empowerment.
-    </p>
-    
-    <div class="hero-buttons">
-      <a href="#mission" class="btn btn-orange">Our Mission</a>
-      <a href="#vision" class="btn btn-outline">Our Vision</a>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--blue);">15</div>
-        <p>Rural Communities</p>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--orange);">2k+</div>
-        <p>Community Members Reached</p>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--blue);">10</div>
-        <p>Past Projects</p>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" style="color: var(--blue);">2</div>
-        <p>Ongoing Projects</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION & VISION -->
-<section class="about-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Who We Are</h2>
-      <div class="section-divider"></div>
-      <p>
-        Our mission, vision, and thematic focus areas guide our commitment
-        to sustainable and inclusive community development in Ghana.
-      </p>
-    </div>
-    
-    <div class="mission-vision-grid">
-      <div class="mission-box" id="mission" data-aos="fade-right">
-        <h3>Our Mission</h3>
-        <p>
-          AICODEV Ghana works to change lives and build communities by ensuring
-          equal access to resources, social services, and social justice for all,
-          especially in underserved and rural communities.
-        </p>
-      </div>
-      
-      <div class="vision-box" id="vision" data-aos="fade-left">
-        <h3>Our Vision</h3>
-        <p>
-          A world where everyone enjoys equal rights and equal access
-          to essential services, opportunities, and a dignified quality of life.
-        </p>
-      </div>
-    </div>
-    
-    <div data-aos="fade-up">
-      <h3 class="text-center">Our Thematic Areas</h3>
-      
-      <div class="thematic-areas-grid">
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-heartbeat"></i></div>
-          <h4>Health</h4>
-          <p>Promoting access to quality healthcare and health education.</p>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">AICODEV<span></span></a>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li>
+                        <a href="#about">About <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#mission">Our Mission</a></li>
+                            <li><a href="#vision">Our Vision</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#projects">Projects <span class="dropdown-arrow">▼</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#education">Education</a></li>
+                            <li><a href="#healthcare">Healthcare</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
         </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Alternative Innovation for Community Development</h1>
+            <p>We are dedicated to creating sustainable change through education, healthcare, and community development initiatives.</p>
+            <div class="hero-buttons">
+                <a href="#volunteer" class="btn btn-secondary">Become a Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our NGO</h2>
+                <p>Learn about our mission, vision, and the values that drive us</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>We Believe in a World Where Everyone Thrives</h3>
+                    <p> AICODEV-Ghana, is a Non-governmental organization (NGO) registered in Ghana with the appropriate State Agencies in Ghana, with certificate numbers; CG074072018 and C0013722573. We are committed to alleviating global poverty of deprived communities by helping them improve their lives. Special focus is on women and children.  .</p>
+                    <p>Our approach is holistic and sustainable, focusing on education, healthcare, economic empowerment, and environmental conservation. We work closely with local communities to develop solutions that address their specific needs and challenges.</p>
         
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-scale-balanced"></i></div>
-          <h4>Human Rights</h4>
-          <p>Advocating for equality, justice, and protection of human rights.</p>
+                </div>
+                <div class="about-image">
+                    <img src="Logo.jpg" alt="Community helping each other">
+                </div>
+            </div>
         </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Impact</h2>
+                <p>Numbers that speak about our dedication and commitment</p>
+            </div>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number" data-count="250">0</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-text">Communities Served</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-count="120000">0</div>
+                    <div class="stat-text">Lives Impacted</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-text">Volunteers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>PROJECTS</h2>
+                <p>We run various projects to support communities in need</p>
+            </div>
+            <div class="programs-container">
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Education Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Healthcare</h3>
+                        <p>W</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Healthcare Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Healthcare Initiative</h3>
+                        <p>We establish medical clinics, provide essential medicines, and run health awareness campaigns in remote areas.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Clean Water Program">
+                    </div>
+                    <div class="program-content">
+                        <h3>Clean Water Access</h3>
+                        <p>We build wells, install water filtration systems, and educate communities about sanitation and hygiene practices.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Economic Empowerment">
+                    </div>
+                    <div class="program-content">
+                        <h3>Economic Empowerment</h3>
+                        <p>We provide vocational training, micro-loans, and business development support to help communities become self-sufficient.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Environmental Conservation">
+                    </div>
+                    <div class="program-content">
+                        <h3>Environmental Conservation</h3>
+                        <p>We promote sustainable farming practices, reforestation, and environmental education to protect natural resources.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-image">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" alt="Women Empowerment">
+                    </div>
+                    <div class="program-content">
+                        <h3>Women Empowerment</h3>
+                        <p>We provide skills training, leadership development, and support networks to empower women and girls in communities.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the dedicated individuals behind AICODEV</p>
+            </div>
+            <div class="team-container">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <h3>John Doe</h3>
+                    <p>Executive Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <h3>Jane Smith</h3>
+                    <p>Program Manager</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <h3>Michael Johnson</h3>
+                    <p>Finance Director</p>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Team Member">
+                    <h3>Sarah Williams</h3>
+                    <p>Community Outreach</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Volunteer Section -->
+    <section id="volunteer">
+        <div class="container">
+            <div class="section-title">
+                <h2>Become a Volunteer</h2>
+                <p>Join our team of dedicated volunteers making a difference</p>
+            </div>
+            <div class="volunteer-form">
+                <form id="volunteerForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <select id="interest">
+                            <option value="">Select an area</option>
+                            <option value="education">Education</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="environment">Environment</option>
+                            <option value="fundraising">Fundraising</option>
+                            <option value="administration">Administration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Why do you want to volunteer with us?</label>
+                        <textarea id="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AICODEV</h3>
+                    <p>Making a difference in communities worldwide through sustainable development initiatives.</p>
+                    <div class="social-links">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>TW</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>YT</span></a>
+                        <a href="#"><span>LI</span></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#team">Our Team</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>1234 Charity Lane, City, Country</p>
+                    <p>Email: info@aicodev.org</p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to get updates on our programs and activities.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email Address" required>
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AICODEV. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.getElementById('nav');
         
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-hand-holding-dollar"></i></div>
-          <h4>Poverty & Livelihoods</h4>
-          <p>Empowering communities through sustainable livelihoods.</p>
-        </div>
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
         
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-graduation-cap"></i></div>
-          <h4>Education</h4>
-          <p>Supporting inclusive and quality education for all.</p>
-        </div>
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
         
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-water"></i></div>
-          <h4>Water & Sanitation</h4>
-          <p>Improving access to safe water and sanitation facilities.</p>
-        </div>
+        // Mobile dropdown toggle
+        const dropdownArrows = document.querySelectorAll('.dropdown-arrow');
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = arrow.parentElement.nextElementSibling;
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
         
-        <div class="thematic-item">
-          <div class="thematic-icon"><i class="fas fa-apple-whole"></i></div>
-          <h4>Nutrition</h4>
-          <p>Promoting food security and proper nutrition practices.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="projects-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Our Projects</h2>
-      <div class="section-divider"></div>
-      <p>
-        Explore some of our impactful initiatives aimed at empowering
-        rural communities across Ghana.
-      </p>
-    </div>
-    
-    <div class="project-item">
-      <img src="a2.jpg" alt="Project 1" class="project-image">
-      <div class="project-content">
-        <h3>Community Development Project</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eius facere velit recusandae illum,
-          dolor repellat inventore eveniet exercitationem quam molestias ut? Quod quo nisi iusto ipsum
-          reiciendis dignissimos inventore.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Unde, quia quod illo sequi inventore quisquam vitae optio sapiente, illum rerum, cupiditate recusandae. 
-          Repellat tempora impedit illo molestias corrupti numquam totam!
-        </p>
-        <a href="#" class="read-more">Read More →</a>
-      </div>
-    </div>
-    
-    <div class="project-item reverse">
-      <img src="a1.jpg" alt="Project 2" class="project-image">
-      <div class="project-content">
-        <h3>Education Initiative</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-          Autem nostrum temporibus perspiciatis nemo dolore, 
-          quos provident labore quisquam asperiores doloremque maiores possimus odio nihil omnis sequi numquam iste cumque eligendi.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita soluta sequi deleniti quod veritatis,
-          odio quo aut eaque voluptates magnam, eum perferendis distinctio ipsum minima! Perferendis eligendi at laborum maxime.
-        </p>
-        <a href="#" class="read-more">Read More →</a>
-      </div>
-    </div>
-    
-    <div class="project-item">
-      <img src="a2.jpg" alt="Project 3" class="project-image">
-      <div class="project-content">
-        <h3>Rural Health Outreach</h3>
-        <p>
-          This project focuses on adolescent reproductive health, mental
-          health awareness, and access to basic healthcare services in
-          underserved rural communities.
-        </p>
-        <p>
-          Health education campaigns and partnerships with local clinics
-          help improve outcomes and reduce preventable illnesses.
-        </p>
-        <a href="#" class="read-more">Read More →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery" class="gallery-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Gallery</h2>
-      <div class="section-divider"></div>
-      <p>
-        Highlights from our community outreach, training programs, and field activities.
-      </p>
-    </div>
-    
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="Participatation in a two day Civil Society Forum.jpg" alt="Gallery 1" class="gallery-img">
-        <div class="gallery-overlay">
-          <p>Participatation in a two day Civil Society Forum</p>
-        </div>
-      </div>
-      
-      <div class="gallery-item">
-        <img src="Radio programme to educate people on malaria elimination.jpg" alt="Gallery 2" class="gallery-img">
-        <div class="gallery-overlay">
-          <p>Radio programme to educate people on malaria elimination</p>
-        </div>
-      </div>
-      
-      <div class="gallery-item">
-        <img src="Training Community Helath for the Gavi Project in The Wa west district.jpg" alt="Gallery 3" class="gallery-img">
-        <div class="gallery-overlay">
-          <p>Training Community Helath for the Gavi Project in The Wa west district</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="team-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Meet Our Team</h2>
-      <div class="section-divider"></div>
-      <p>
-        Dedicated professionals working tirelessly to drive sustainable development and innovation in our communities.
-      </p>
-    </div>
-    
-    <div class="team-member">
-      <div class="team-image-container">
-        <img src="Cyracus.jpeg" alt="Mr. Cyracus" class="team-image">
-        <div class="team-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      
-      <div class="team-content">
-        <h3 class="team-name">Mr. Cyracus</h3>
-        <p class="team-title">Executive Director</p>
-        <div class="team-bio">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
-            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
-            voluptatibus! Dicta, quis voluptatum. Eaque, soluta?
-          </p>
-          <p>
-            Ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quis totam vero
-            nisi vitae fugit beatae modi, ab delectus alias, aspernatur possimus architecto cupiditate 
-            voluptatibus!
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>Contact Us</h2>
-      <div class="section-divider"></div>
-      <p>
-        Reach out to us via email, social media, or our contact form below.
-      </p>
-    </div>
-    
-    <div class="contact-grid">
-      <div class="contact-left">
-        <div class="contact-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.576210893805!2d-0.1870!3d5.6037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3AAICODEV!2sAICODEV%20Ghana!5e0!3m2!1sen!2sgh!4v000000"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
+        // Donation Amount Selection
+        const donateOptions = document.querySelectorAll('.donate-option');
+        donateOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                donateOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                document.querySelector('.donate input[type="text"]').value = '$' + option.getAttribute('data-amount');
+            });
+        });
         
-        <div class="contact-social">
-          <h3>Follow Us</h3>
-          <div class="social-icons-large">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://wa.me/YourNumber" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="contact-form-container">
-        <h3>Send Us a Message</h3>
-        <form id="contact-form">
-          <div class="form-group">
-            <span class="form-icon"><i class="fas fa-user"></i></span>
-            <input type="text" name="name" placeholder="Your Name" required class="form-input">
-          </div>
-          
-          <div class="form-group">
-            <span class="form-icon"><i class="fas fa-envelope"></i></span>
-            <input type="email" name="email" placeholder="Your Email" required class="form-input">
-          </div>
-          
-          <div class="form-group">
-            <span class="form-icon"><i class="fas fa-comment"></i></span>
-            <textarea name="message" placeholder="Your Message" required class="form-textarea"></textarea>
-          </div>
-          
-          <button type="submit" class="form-submit">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-  <div id="toast" class="toast"></div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <h3>AICODEV</h3>
-        <p>
-          Building habits, encouraging community engagement, and ensuring sustainable development in rural Ghana.
-        </p>
-        <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-links">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#">Who We Are</a></li>
-          <li><a href="#">Our Impact</a></li>
-          <li><a href="#">Latest News</a></li>
-          <li><a href="#">Volunteer</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-partners">
-        <h4>Our Sponsors & Partners</h4>
-        <div class="partners-grid">
-          <img src="GHANET.jpg" alt="GHANET" class="partner-logo">
-          <img src="Global.jpg" alt="Global Fund" class="partner-logo">
-          <img src="Aids commission.jpg" alt="HIV/AIDS Commission" class="partner-logo">
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; AICODEV. All Rights Reserved.</p>
-    </div>
-  </div>
-</footer>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<script>
-  // Initialize AOS
-  AOS.init({
-    duration: 900,
-    once: true,
-    easing: 'ease-out-cubic'
-  });
-
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('show');
-  });
-
-  // Close mobile menu when clicking a link
-  document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('show');
-    });
-  });
-
-  // EmailJS initialization
-  emailjs.init("user_Yr8hTwm-Uw8t4tMJL"); // Replace with your EmailJS public key
-
-  const form = document.getElementById('contact-form');
-  const toast = document.getElementById('toast');
-
-  function showToast(message, success = true) {
-    toast.textContent = message;
-    toast.className = 'toast show';
-    toast.classList.add(success ? 'success' : 'error');
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
-  }
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    emailjs.sendForm('service_58c2wuv', 'template_izajwy1', this)
-      .then(() => {
-        showToast('Message sent successfully!', true);
-        form.reset();
-      }, (error) => {
-        console.error('EmailJS Error:', error);
-        showToast('Oops! Something went wrong.', false);
-      });
-  });
-</script>
-
+        // Animated Counter for Stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+        
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = Math.ceil(target / speed);
+                
+                if (count < target) {
+                    counter.innerText = Math.min(count + increment, target);
+                    setTimeout(animateCounters, 1);
+                }
+            });
+        };
+        
+        // Initialize counters when they come into view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-box').forEach(box => {
+            observer.observe(box);
+        });
+        
+        // Form Submission
+        const volunteerForm = document.getElementById('volunteerForm');
+        volunteerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest in volunteering! We will contact you soon.');
+            volunteerForm.reset();
+        });
+    </script>
 </body>
 </html>
